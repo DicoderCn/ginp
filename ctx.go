@@ -13,7 +13,7 @@ type ContextPlus struct {
 
 // Success 返回OK,形式为JSON
 func (c *ContextPlus) Success(messages ...string) {
-	c.respJson(codeHttpSuccess, gin.H{
+	c.R(codeHttpSuccess, gin.H{
 		"code": codeOk,
 		"msg":  formatSuccessMsg(messages...),
 	})
@@ -22,7 +22,7 @@ func (c *ContextPlus) Success(messages ...string) {
 // Fail 返回ERROR,形式为JSON
 func (c *ContextPlus) Fail(strs ...string) {
 
-	c.respJson(codeHttpFail, gin.H{
+	c.R(codeHttpFail, gin.H{
 		"code": codeFail,
 		"msg":  formatFailMsg(strs...),
 	})
@@ -30,7 +30,7 @@ func (c *ContextPlus) Fail(strs ...string) {
 
 // FailData 返回OK,形式为JSON
 func (c *ContextPlus) FailData(data any, extra any, messages ...string) {
-	c.respJson(codeHttpFail, gin.H{
+	c.R(codeHttpFail, gin.H{
 		"code":  codeFail,
 		"msg":   formatFailMsg(messages...),
 		"data":  data,
@@ -43,7 +43,7 @@ func (c *ContextPlus) FailData(data any, extra any, messages ...string) {
 // 如直接传map,嫌map麻烦也可以是第一个传key，第二个参数val，
 // 前端自己处理业务逻辑（前段收到的extra字段是数组形式）
 func (c *ContextPlus) SuccessData(data any, extra any, messages ...string) {
-	c.respJson(codeHttpSuccess, gin.H{
+	c.R(codeHttpSuccess, gin.H{
 		"code":  codeOk,
 		"msg":   formatSuccessMsg(messages...),
 		"data":  data,
@@ -54,7 +54,8 @@ func (c *ContextPlus) SuccessHtml(path string) {
 	c.HTML(codeHttpSuccess, path, gin.H{})
 }
 
-func (c *ContextPlus) respJson(code int, obj any) {
+// R RespondJson 返回JSON,形式为JSON
+func (c *ContextPlus) R(code int, obj any) {
 	c.Log(obj)
 	c.JSON(code, obj)
 }
@@ -63,6 +64,7 @@ func (c *ContextPlus) Log(data any) {
 	if showLog == false {
 		return
 	}
+
 	// 生成日志格式并记录
 	log.Printf("%s %s %s %d  user_id:%v request:%+v respond:%+v",
 		c.ClientIP(),

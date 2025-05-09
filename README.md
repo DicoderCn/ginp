@@ -1,12 +1,10 @@
-# ginp
-
-[GitHub仓库](https://github.com/DicoderCn/ginp)
 
 ## ContextPlus API
 
 <div align="right">
   <a href="https://github.com/DicoderCn/ginp">English</a>
-  <a href="https://github.com/DicoderCn/ginp/README_zh.md">中文</a>
+  |
+  <a href="https://github.com/DicoderCn/ginp/blob/master/README_zh.md">中文</a>
 </div>
 
 <a id="english"></a>

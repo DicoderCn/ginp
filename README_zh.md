@@ -87,9 +87,28 @@ func (c *ContextPlus) R(code int, obj any)
 - `code`: HTTP状态码
 - `obj`: 响应对象
 
-#### Log
+### 参数设置方法
+#### SetSuccessCode
 ```go
-func (c *ContextPlus) Log(data any)
+func SetSuccessCode(code int)
 ```
-记录请求日志
-- `data`: 日志数据
+Sets the success code, default is 200
+- `code`: HTTP status code
+#### SetFailCode
+```go
+func SetFailCode(code int)  
+```
+Sets the failure code, default is 400
+- `code`: HTTP status code
+#### SetSuccessMessage
+```go
+func SetSuccessMessage(message string)
+```
+Sets the success message, default is "success"
+- `message`: Success message
+#### SetFailMessage
+```go
+func SetFailMessage(message string)
+```
+Sets the failure message, default is "fail"
+- `message`: Failure message  

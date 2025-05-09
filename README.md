@@ -85,9 +85,30 @@ General JSON response method
 - `code`: HTTP status code
 - `obj`: Response object
 
-#### Log
+### Setting Methods 
+#### SetSuccessCode
 ```go
-func (c *ContextPlus) Log(data any)
+func SetSuccessCode(code int)
 ```
-Logs request data
-- `data`: Log data
+Sets the success code, default is 200
+- `code`: HTTP status code
+#### SetFailCode
+```go
+func SetFailCode(code int)  
+```
+Sets the failure code, default is 400
+- `code`: HTTP status code
+#### SetSuccessMessage
+```go
+func SetSuccessMessage(message string)
+```
+Sets the success message, default is "success"
+- `message`: Success message
+#### SetFailMessage
+```go
+func SetFailMessage(message string)
+```
+Sets the failure message, default is "fail"
+- `message`: Failure message  
+
+  

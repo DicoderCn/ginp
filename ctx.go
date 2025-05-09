@@ -21,7 +21,6 @@ func (c *ContextPlus) Success(messages ...string) {
 
 // Fail 返回ERROR,形式为JSON
 func (c *ContextPlus) Fail(strs ...string) {
-
 	c.R(codeHttpFail, gin.H{
 		"code": codeFail,
 		"msg":  formatFailMsg(strs...),

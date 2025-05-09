@@ -10,18 +10,18 @@ import (
 	"github.com/DicoderCn/ginp"
 	"github.com/gin-gonic/gin"
 )
-//1.main.go:register router
 func main() {
-    r := gin.Default()
-	r.GET("/index", ginp.RegisterHandler(controller.Index))
+	r := gin.Default()
+	ginp.SetSuccessCode(200)
+	r.GET("/", ginp.RegisterHandler(Index))
+	r.Run(":8082")
+}
+func Index(c *ginp.ContextPlus) {
+	//your code here
+    //...
+	c.Success()
 }
 
-//2.controller/index.go: use
-func AccountConfigCreate(ctx *ginp.ContextPlus) {
-	//your code here 
-    //The usage is exactly the same as gin
-    //ctx.Success() Success
-}
 
 
 //extra:

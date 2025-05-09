@@ -1,9 +1,14 @@
 
-# 安装
+# Introduction
+ginp is a wrapper for gin, which is used to simplify the use of gin, and reduce the amount of code written.
+
+Ginp是gin的包装器，用于简化gin的使用，并减少编写的代码量。
+
+# Install 安装
 ```bash
 go get github.com/DicoderCn/ginp
 ```
-# 快速开始
+# Quickly 快速开始
 ```go
 package main
 import (

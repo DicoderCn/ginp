@@ -51,7 +51,7 @@ func JsonToGinH(jsonUrl string) (gin.H, error) {
 }
 
 func formatSuccessMsg(messages ...string) (msg string) {
-	msg = "success"
+	msg = successMsgDefault
 	if len(messages) > 0 {
 		for _, message := range messages {
 			msg += message
@@ -60,7 +60,7 @@ func formatSuccessMsg(messages ...string) (msg string) {
 	return msg
 }
 func formatFailMsg(messages ...string) (msg string) {
-	msg = "fail"
+	msg = failMsgDefault
 	if len(messages) > 0 {
 		for _, message := range messages {
 			msg += message

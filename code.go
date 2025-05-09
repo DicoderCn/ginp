@@ -11,6 +11,8 @@ var codeHttpSuccess int
 var codeHttpFail int
 
 var showLog = true
+var successMsgDefault = "success"
+var failMsgDefault = "fail"
 
 // 初始化 code
 func init() {
@@ -21,6 +23,12 @@ func init() {
 	codeHttpFail = http.StatusOK
 }
 
+func SetSuccessMsg(msg string) {
+	successMsgDefault = msg
+}
+func SetFailMsg(msg string) {
+	failMsgDefault = msg
+}
 func SetSuccessCode(code any) {
 	codeOk = code
 }

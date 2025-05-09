@@ -49,3 +49,13 @@ func JsonToGinH(jsonUrl string) (gin.H, error) {
 
 	return data, nil
 }
+
+func formatMsg(messages ...string) (msg string) {
+	msg = "ok"
+	if len(messages) > 0 {
+		for _, message := range messages {
+			msg += message
+		}
+	}
+	return msg
+}

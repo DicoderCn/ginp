@@ -12,30 +12,27 @@ type ContextPlus struct {
 }
 
 // Success 返回OK,形式为JSON
-func (c *ContextPlus) Success() {
+func (c *ContextPlus) Success(messages ...string) {
 	c.respJson(codeHttpSuccess, gin.H{
 		"code": codeOk,
-		"msg":  "ok",
+		"msg":  formatMsg(messages...),
 	})
 }
 
 // Fail 返回ERROR,形式为JSON
 func (c *ContextPlus) Fail(strs ...string) {
-	msg := "error"
-	if len(strs) > 0 {
-		msg = strs[0]
-	}
+
 	c.respJson(codeHttpFail, gin.H{
 		"code": codeFail,
-		"msg":  msg,
+		"msg":  formatMsg(strs...),
 	})
 }
 
 // FailData 返回OK,形式为JSON
-func (c *ContextPlus) FailData(msg string, data any, extra ...any) {
+func (c *ContextPlus) FailData(data any, extra any, messages ...string) {
 	c.respJson(codeHttpFail, gin.H{
 		"code":  codeFail,
-		"msg":   msg,
+		"msg":   formatMsg(messages...),
 		"data":  data,
 		"extra": extra,
 	})
@@ -45,12 +42,12 @@ func (c *ContextPlus) FailData(msg string, data any, extra ...any) {
 // extra使用场景：data是固定结构体形式，无法再添加字段时可以将其他信息传到extra中，
 // 如直接传map,嫌map麻烦也可以是第一个传key，第二个参数val，
 // 前端自己处理业务逻辑（前段收到的extra字段是数组形式）
-func (c *ContextPlus) SuccessData(data any) {
+func (c *ContextPlus) SuccessData(data any, extra any, messages ...string) {
 	c.respJson(codeHttpSuccess, gin.H{
-		"code": codeOk,
-		"msg":  "ok",
-		"data": data,
-		//"extra": extra,
+		"code":  codeOk,
+		"msg":   formatMsg(messages...),
+		"data":  data,
+		"extra": extra,
 	})
 }
 func (c *ContextPlus) SuccessHtml(path string) {

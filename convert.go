@@ -3,7 +3,7 @@ package ginp
 import "github.com/gin-gonic/gin"
 
 // 将其转换成我们自定义的扩展
-func RegisterHandler(handler func(c IContextPlus)) func(c *gin.Context) {
+func RegisterHandler(handler func(c *ContextPlus)) func(c *gin.Context) {
 	return func(c *gin.Context) {
 		handler(&ContextPlus{
 			Context: c,

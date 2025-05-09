@@ -50,8 +50,17 @@ func JsonToGinH(jsonUrl string) (gin.H, error) {
 	return data, nil
 }
 
-func formatMsg(messages ...string) (msg string) {
-	msg = "ok"
+func formatSuccessMsg(messages ...string) (msg string) {
+	msg = "success"
+	if len(messages) > 0 {
+		for _, message := range messages {
+			msg += message
+		}
+	}
+	return msg
+}
+func formatFailMsg(messages ...string) (msg string) {
+	msg = "fail"
 	if len(messages) > 0 {
 		for _, message := range messages {
 			msg += message

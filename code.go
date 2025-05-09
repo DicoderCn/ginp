@@ -10,6 +10,8 @@ var codeNoLogin any
 var codeHttpSuccess int
 var codeHttpFail int
 
+var showLog = true
+
 // 初始化 code
 func init() {
 	SetFailCode(0)
@@ -21,6 +23,9 @@ func init() {
 
 func SetSuccessCode(code any) {
 	codeOk = code
+}
+func SetShowLog(show bool) {
+	showLog = show
 }
 
 func SetSuccessHttpCode(code int) {

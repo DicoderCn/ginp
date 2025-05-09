@@ -15,7 +15,7 @@ type ContextPlus struct {
 func (c *ContextPlus) Success(messages ...string) {
 	c.respJson(codeHttpSuccess, gin.H{
 		"code": codeOk,
-		"msg":  formatMsg(messages...),
+		"msg":  formatSuccessMsg(messages...),
 	})
 }
 
@@ -24,7 +24,7 @@ func (c *ContextPlus) Fail(strs ...string) {
 
 	c.respJson(codeHttpFail, gin.H{
 		"code": codeFail,
-		"msg":  formatMsg(strs...),
+		"msg":  formatFailMsg(strs...),
 	})
 }
 
@@ -32,7 +32,7 @@ func (c *ContextPlus) Fail(strs ...string) {
 func (c *ContextPlus) FailData(data any, extra any, messages ...string) {
 	c.respJson(codeHttpFail, gin.H{
 		"code":  codeFail,
-		"msg":   formatMsg(messages...),
+		"msg":   formatFailMsg(messages...),
 		"data":  data,
 		"extra": extra,
 	})
@@ -45,7 +45,7 @@ func (c *ContextPlus) FailData(data any, extra any, messages ...string) {
 func (c *ContextPlus) SuccessData(data any, extra any, messages ...string) {
 	c.respJson(codeHttpSuccess, gin.H{
 		"code":  codeOk,
-		"msg":   formatMsg(messages...),
+		"msg":   formatSuccessMsg(messages...),
 		"data":  data,
 		"extra": extra,
 	})
@@ -60,6 +60,9 @@ func (c *ContextPlus) respJson(code int, obj any) {
 }
 
 func (c *ContextPlus) Log(data any) {
+	if showLog == false {
+		return
+	}
 	// 生成日志格式并记录
 	log.Printf("%s %s %s %d  user_id:%v request:%+v respond:%+v",
 		c.ClientIP(),

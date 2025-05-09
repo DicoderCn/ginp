@@ -8,8 +8,35 @@
 </div>
 
 <a id="chinese"></a>
-### 中文版本
+### 简介
 `ContextPlus` 是对 `gin.Context` 的扩展，提供了更便捷的响应方法。
+
+
+### 安装
+```bash
+go get github.com/DicoderCn/ginp
+```
+### 快速开始
+```go
+package main
+
+import (
+	"github.com/DicoderCn/ginp"
+	"github.com/gin-gonic/gin"
+)
+
+func main() {
+	r := gin.Default()
+  // Set success code, default is 200
+	ginp.SetSuccessCode(200) 
+	r.GET("/", ginp.RegisterHandler(Index))
+	r.Run(":8082")
+}
+
+func Index(c *ginp.ContextPlus) {
+	c.Success()
+}
+```
 
 ### 方法列表
 

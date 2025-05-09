@@ -8,10 +8,35 @@
 </div>
 
 <a id="english"></a>
-### English Version
+### introduction
 `ContextPlus` is an extension of `gin.Context` that provides more convenient response methods.
 
-### Method List
+### install
+```bash
+go get github.com/DicoderCn/ginp
+```
+### usage
+```go
+package main
+
+import (
+	"github.com/DicoderCn/ginp"
+	"github.com/gin-gonic/gin"
+)
+
+func main() {
+	r := gin.Default()
+  // Set success code, default is 200
+	ginp.SetSuccessCode(200) 
+	r.GET("/", ginp.RegisterHandler(Index))
+	r.Run(":8082")
+}
+
+func Index(c *ginp.ContextPlus) {
+	c.Success()
+}
+```
+### Context Method List
 
 #### Success
 ```go

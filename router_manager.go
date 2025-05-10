@@ -2,8 +2,8 @@ package ginp
 
 import "github.com/gin-gonic/gin"
 
-// Routers 存放所有的路由定义
-var Routers = []RouterItem{}
+// routers 存放所有的路由定义
+var routers = []RouterItem{}
 
 // RouterGroup 路由分组结构
 type RouterGroup struct {
@@ -43,7 +43,7 @@ type SwaggerInfo struct {
 
 // 注册路由
 func RegisterRouter(r *gin.Engine) {
-	for _, item := range Routers {
+	for _, item := range routers {
 		handlers := make([]gin.HandlerFunc, 0)
 		if len(item.Middlewares) > 0 {
 			handlers = append(handlers, item.Middlewares...)
@@ -66,9 +66,14 @@ func RegisterRouter(r *gin.Engine) {
 
 // AppendRouter 向现有的路由新增
 func RouterAppend(item RouterItem) {
-	Routers = append(Routers, item)
+	routers = append(routers, item)
 }
 
 func RouterFormatCreate(item RouterItem) {
-	Routers = append(Routers, item)
+	routers = append(routers, item)
+}
+
+// GetAllRouter 获取所有的路由
+func GetAllRouter() []RouterItem {
+	return routers
 }

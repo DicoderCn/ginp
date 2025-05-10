@@ -68,3 +68,7 @@ func RegisterRouter(r *gin.Engine) {
 func RouterAppend(item RouterItem) {
 	Routers = append(Routers, item)
 }
+
+func RouterFormatCreate(item RouterItem) {
+	Routers = append(Routers, item)
+}

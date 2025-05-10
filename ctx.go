@@ -28,12 +28,11 @@ func (c *ContextPlus) Fail(strs ...string) {
 }
 
 // FailData 返回OK,形式为JSON
-func (c *ContextPlus) FailData(data any, extra any, messages ...string) {
+func (c *ContextPlus) FailData(data any, messages ...string) {
 	c.R(codeHttpFail, gin.H{
-		"code":  codeFail,
-		"msg":   formatFailMsg(messages...),
-		"data":  data,
-		"extra": extra,
+		"code": codeFail,
+		"msg":  formatFailMsg(messages...),
+		"data": data,
 	})
 }
 
@@ -41,12 +40,11 @@ func (c *ContextPlus) FailData(data any, extra any, messages ...string) {
 // extra使用场景：data是固定结构体形式，无法再添加字段时可以将其他信息传到extra中，
 // 如直接传map,嫌map麻烦也可以是第一个传key，第二个参数val，
 // 前端自己处理业务逻辑（前段收到的extra字段是数组形式）
-func (c *ContextPlus) SuccessData(data any, extra any, messages ...string) {
+func (c *ContextPlus) SuccessData(data any, messages ...string) {
 	c.R(codeHttpSuccess, gin.H{
-		"code":  codeOk,
-		"msg":   formatSuccessMsg(messages...),
-		"data":  data,
-		"extra": extra,
+		"code": codeOk,
+		"msg":  formatSuccessMsg(messages...),
+		"data": data,
 	})
 }
 func (c *ContextPlus) SuccessHtml(path string) {

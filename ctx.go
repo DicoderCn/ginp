@@ -47,6 +47,7 @@ func (c *ContextPlus) SuccessData(data any, messages ...string) {
 		"data": data,
 	})
 }
+
 func (c *ContextPlus) SuccessHtml(path string) {
 	c.HTML(codeHttpSuccess, path, gin.H{})
 }
